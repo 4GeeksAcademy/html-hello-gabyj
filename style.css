@@ -1,0 +1,156 @@
+/* Incluye el relleno y los bordes dentro del tamaño de cada elemento */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #222222;
+    background-color: #ffffff;
+}
+
+/* Enlace visible al recibir el foco con el teclado */
+.saltar-contenido {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: #ffffff;
+    color: #222222;
+    transform: translateY(-150%);
+    z-index: 10;
+}
+
+.saltar-contenido:focus {
+    transform: translateY(0);
+}
+
+/* Barra de navegación */
+.cabecera {
+    background-color: #202035;
+    padding: 1rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Indicador visible al navegar con la tecla Tab */
+a:focus-visible {
+    outline: 3px solid #b45309;
+    outline-offset: 5px;
+}
+
+nav a:focus-visible {
+    outline-color: #ffdf80;
+}
+
+/* Cada sección ocupa al menos el alto de una pantalla */
+section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+}
+
+.contenido-seccion {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Colores de las distintas secciones */
+#inicio {
+    background-color: #202035;
+    color: #ffffff;
+}
+
+#sobre-mi {
+    background-color: #f5f5f5;
+}
+
+#trayectoria {
+    background-color: #e9edf5;
+}
+
+#presentaciones {
+    background-color: #fff4e6;
+}
+
+/* Títulos y textos */
+h1 {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    line-height: 1.1;
+    margin: 0 0 1.5rem;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+}
+
+p,
+.lista-trayectoria {
+    font-size: 1.125rem;
+}
+
+.subtitulo {
+    color: #ffdf80;
+    font-weight: bold;
+}
+
+.lista-trayectoria {
+    padding-left: 1.5rem;
+}
+
+.lista-trayectoria li {
+    margin-bottom: 1rem;
+}
+
+/* Enlace con apariencia de botón */
+.boton {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    background-color: #ffdf80;
+    color: #202035;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boton:hover {
+    background-color: #f5cc55;
+}
+
+#inicio a:focus-visible {
+    outline-color: #ffffff;
+}
+
+/* Pie de página */
+footer {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #202035;
+    color: #ffffff;
+}
