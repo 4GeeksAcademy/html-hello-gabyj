@@ -1,156 +1,545 @@
-/* Incluye el relleno y los bordes dentro del tamaño de cada elemento */
-* {
+/* ========================================
+   1. Configuración general
+   ======================================== */
+
+:root {
+    --azul: #17283b;
+    --crema: #fbf7f0;
+    --arena: #eee5d9;
+    --terracota: #98462f;
+    --terracota-oscuro: #783522;
+    --texto: #263445;
+    --texto-secundario: #52606b;
+    --blanco: #ffffff;
+    --borde: #d7cbbd;
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-/* Estilos generales */
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    color: #222222;
-    background-color: #ffffff;
+html {
+    scroll-padding-top: 1rem;
 }
 
-/* Enlace visible al recibir el foco con el teclado */
+body {
+    margin: 0;
+    background-color: var(--crema);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--terracota);
+    text-underline-offset: 0.25em;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--terracota);
+    outline-offset: 5px;
+    border-radius: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: normal;
+    line-height: 1.15;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.7rem, 9vw, 6rem);
+}
+
+h2 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.1rem, 6vw, 3.8rem);
+}
+
+h3 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+}
+
+p {
+    margin-bottom: 1.25rem;
+}
+
+.contenedor {
+    width: min(100% - 2rem, 1120px);
+    margin-inline: auto;
+}
+
+/* ========================================
+   2. Accesibilidad
+   ======================================== */
+
 .saltar-contenido {
     position: absolute;
-    top: 0;
-    left: 1rem;
-    padding: 0.75rem 1rem;
-    background-color: #ffffff;
-    color: #222222;
-    transform: translateY(-150%);
-    z-index: 10;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.8rem 1rem;
+    background-color: var(--azul);
+    color: var(--blanco);
+    transform: translateY(-200%);
 }
 
 .saltar-contenido:focus {
     transform: translateY(0);
 }
 
-/* Barra de navegación */
+/* ========================================
+   3. Cabecera y menú horizontal
+   ======================================== */
+
 .cabecera {
-    background-color: #202035;
-    padding: 1rem;
+    background-color: var(--crema);
+    border-bottom: 1px solid var(--borde);
 }
 
-nav ul {
+.cabecera-interior {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding-block: 1rem 0.5rem;
+}
+
+.marca {
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav {
+    width: 100%;
+    min-width: 0;
+}
+
+.menu {
+    display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
+    justify-content: center;
+    gap: 0.15rem 0.35rem;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Indicador visible al navegar con la tecla Tab */
-a:focus-visible {
-    outline: 3px solid #b45309;
-    outline-offset: 5px;
-}
-
-nav a:focus-visible {
-    outline-color: #ffdf80;
-}
-
-/* Cada sección ocupa al menos el alto de una pantalla */
-section {
-    min-height: 100vh;
+.menu a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1.5rem;
-}
-
-.contenido-seccion {
-    width: 100%;
-    max-width: 900px;
-}
-
-/* Colores de las distintas secciones */
-#inicio {
-    background-color: #202035;
-    color: #ffffff;
-}
-
-#sobre-mi {
-    background-color: #f5f5f5;
-}
-
-#trayectoria {
-    background-color: #e9edf5;
-}
-
-#presentaciones {
-    background-color: #fff4e6;
-}
-
-/* Títulos y textos */
-h1 {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    line-height: 1.1;
-    margin: 0 0 1.5rem;
-}
-
-h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.2;
-    margin: 0 0 1.5rem;
-}
-
-p,
-.lista-trayectoria {
-    font-size: 1.125rem;
-}
-
-.subtitulo {
-    color: #ffdf80;
-    font-weight: bold;
-}
-
-.lista-trayectoria {
-    padding-left: 1.5rem;
-}
-
-.lista-trayectoria li {
-    margin-bottom: 1rem;
-}
-
-/* Enlace con apariencia de botón */
-.boton {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    background-color: #ffdf80;
-    color: #202035;
+    min-height: 44px;
+    padding: 0.45rem 0.5rem;
+    color: var(--azul);
+    font-size: 0.875rem;
     text-decoration: none;
+}
+
+.menu a:hover {
+    color: var(--terracota);
+    text-decoration: underline;
+}
+
+/* ========================================
+   4. Portada
+   ======================================== */
+
+.portada {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: 5rem;
+    overflow: hidden;
+    text-align: center;
+    background-color: var(--arena);
+}
+
+/* Fondo artístico decorativo creado con CSS */
+.arte-portada {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(
+            ellipse at 10% 90%,
+            #597488 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 95% 75%,
+            #c38063 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            160deg,
+            #fbf7f0 15%,
+            #eee5d9 60%,
+            #d6b49c 100%
+        );
+}
+
+.contenido-portada {
+    max-width: 850px;
+}
+
+.etiqueta {
+    margin-bottom: 1rem;
+    color: var(--terracota);
+    font-size: 0.75rem;
     font-weight: bold;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.frase-portada {
+    max-width: 650px;
+    margin-inline: auto;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+}
+
+.introduccion {
+    max-width: 570px;
+    margin-inline: auto;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 48px;
+    margin-top: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    border: 2px solid var(--terracota);
+    border-radius: 4px;
+    background-color: var(--terracota);
+    color: var(--blanco);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .boton:hover {
-    background-color: #f5cc55;
+    border-color: var(--terracota-oscuro);
+    background-color: var(--terracota-oscuro);
 }
 
-#inicio a:focus-visible {
-    outline-color: #ffffff;
+/* ========================================
+   5. Secciones generales
+   ======================================== */
+
+.seccion {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: clamp(4rem, 8vw, 7rem);
 }
 
-/* Pie de página */
-footer {
-    padding: 1.5rem;
+.encabezado-seccion {
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
     text-align: center;
-    background-color: #202035;
-    color: #ffffff;
+}
+
+.encabezado-seccion > p:last-child {
+    margin-bottom: 0;
+    color: var(--texto-secundario);
+}
+
+/* ========================================
+   6. Sobre mí
+   ======================================== */
+
+.seccion-sobre-mi {
+    background-color: var(--crema);
+}
+
+.biografia {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+.panel-artista {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 500px;
+    min-height: 280px;
+    aspect-ratio: 4 / 3;
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+        linear-gradient(
+            145deg,
+            transparent 45%,
+            #8cabb0 45%,
+            #8cabb0 68%,
+            #284459 68%
+        ),
+        #e5d2bb;
+}
+
+.circulo-artista {
+    position: absolute;
+    top: 12%;
+    right: 15%;
+    width: 35%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: #bf795c;
+}
+
+.firma-decorativa {
+    position: relative;
+    color: var(--blanco);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-style: italic;
+}
+
+.texto-biografia {
+    max-width: 580px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.texto-destacado {
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    line-height: 1.5;
+}
+
+.enlace-texto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    font-weight: bold;
+}
+
+/* ========================================
+   7. Trayectoria
+   ======================================== */
+
+.seccion-trayectoria {
+    background-color: var(--arena);
+}
+
+.tarjetas-trayectoria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tarjeta {
+    min-width: 0;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background-color: var(--crema);
+    text-align: center;
+}
+
+.numero {
+    display: block;
+    margin-bottom: 1.25rem;
+    color: var(--terracota);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.tarjeta p {
+    margin-bottom: 0;
+    color: var(--texto-secundario);
+}
+
+/* ========================================
+   8. Próximas presentaciones
+   ======================================== */
+
+.seccion-agenda {
+    background-color: var(--crema);
+}
+
+.tarjeta-evento {
+    display: grid;
+    max-width: 950px;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background-color: var(--blanco);
+}
+
+.arte-evento {
+    min-height: 230px;
+    background:
+        radial-gradient(
+            circle at 72% 30%,
+            #d5a47e 0%,
+            #d5a47e 12%,
+            transparent 12.5%
+        ),
+        linear-gradient(
+            150deg,
+            #e9e0d1 40%,
+            #a1b4ba 40%,
+            #a1b4ba 60%,
+            #355367 60%,
+            #17283b 100%
+        );
+}
+
+.contenido-evento {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    text-align: center;
+}
+
+.estado {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 30px;
+    background-color: #f6e8de;
+    color: var(--terracota);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.detalle-evento {
+    margin-bottom: 0;
+    color: var(--texto-secundario);
+    font-weight: bold;
+}
+
+/* ========================================
+   9. Pie de página
+   ======================================== */
+
+.pie {
+    padding-block: 3rem;
+    background-color: var(--azul);
+    color: var(--crema);
+    text-align: center;
+}
+
+.marca-pie {
+    margin-bottom: 0.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.75rem;
+}
+
+.pie a {
+    display: inline-block;
+    min-height: 44px;
+    padding: 0.5rem;
+    color: #ffddba;
+}
+
+.pie a:focus-visible {
+    outline-color: #ffddba;
+}
+
+.derechos {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+}
+
+/* ========================================
+   10. Adaptación a tabletas y ordenadores
+   Los estilos anteriores priorizan el móvil.
+   ======================================== */
+
+@media (min-width: 48rem) {
+    .contenedor {
+        width: min(100% - 4rem, 1120px);
+    }
+
+    .cabecera-interior {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-block: 1.25rem;
+    }
+
+    nav {
+        width: auto;
+    }
+
+    .menu {
+        gap: 0.5rem;
+    }
+
+    .menu a {
+        padding-inline: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .biografia {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 3rem;
+    }
+
+    .tarjetas-trayectoria {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tarjeta-evento {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .arte-evento {
+        min-height: 350px;
+    }
+}
+
+/* Desplazamiento suave solo si el usuario permite animaciones */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
